@@ -146,7 +146,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatedCard delay={0.2}>
-              <a href="https://www.aipodcast.blog" target="_blank" rel="noopener noreferrer" className="block w-full">
+              <a href="https://nextjs-blog-post-card-202278901138.us-central1.run.app" target="_blank" rel="noopener noreferrer" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
                     <CardTitle> AI-Podcast </CardTitle>
