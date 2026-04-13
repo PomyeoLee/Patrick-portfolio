@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, BarChart2, Database, GitBranch, Layers, Map, TrendingUp } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { CovidDatabricksDashboard } from "@/components/covid-databricks-dashboard"
 
 export default function CovidProjectPage() {
   return (
@@ -28,7 +29,7 @@ export default function CovidProjectPage() {
             Investigating the Relationship Between Population Mobility and COVID-19 Incidence Rates Across U.S. Counties
           </p>
           <div className="flex flex-wrap gap-2">
-            {["Python", "XGBoost", "Pandas", "Google Mobility Data", "CDC Data", "Seaborn", "Scikit-learn", "Correlation Analysis"].map((tag) => (
+            {["Databricks", "PySpark", "Python", "XGBoost", "SQL", "Google Mobility Data", "CDC Data", "Correlation Analysis"].map((tag) => (
               <Badge key={tag} variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50">
                 {tag}
               </Badge>
@@ -43,12 +44,14 @@ export default function CovidProjectPage() {
             Project Overview
           </h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            This study explores whether and how changes in human mobility patterns drove COVID-19 transmission dynamics across the United States. By merging Google&apos;s COVID-19 Community Mobility Reports with CDC county-level case and death data, the project quantifies lag-adjusted correlations between six mobility categories and weekly new case counts, assesses the effectiveness of stay-at-home policies, and surfaces geographic and demographic moderators through gradient-boosted tree models.
+            This study explores whether and how changes in human mobility patterns drove COVID-19 transmission dynamics across the United States. By merging Google's COVID-19 Community Mobility Reports with CDC county-level case and death data, the project quantifies lag-adjusted correlations between six mobility categories and weekly new case counts, assesses the effectiveness of stay-at-home policies, and surfaces geographic and demographic moderators through gradient-boosted tree models. The full data pipeline was built and executed on Databricks, leveraging distributed computing for processing large-scale county-week panel data. Interactive Databricks dashboards were developed to communicate national trends, state-level comparisons, and mobility-incidence relationships across pandemic waves.
           </p>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             The findings provide actionable insights for public health officials designing non-pharmaceutical interventions and for policymakers evaluating the trade-off between economic activity and epidemic control.
           </p>
         </section>
+
+        <CovidDatabricksDashboard />
 
         {/* Data Sources */}
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
@@ -69,7 +72,7 @@ export default function CovidProjectPage() {
             <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
               <h3 className="font-semibold mb-2 text-purple-700 dark:text-purple-400">CDC COVID-19 Case Surveillance</h3>
               <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc list-inside">
-                <li>Weekly confirmed case counts and death counts per county</li>
+                <li>Weekly confirmed case counts and death counts per county (data through 2023-05-08)</li>
                 <li>Population-normalized incidence rates (per 100,000 residents)</li>
                 <li>Vaccination rate time series from CDC COVID Data Tracker</li>
                 <li>State-level policy enactment dates (stay-at-home orders, mask mandates)</li>
@@ -88,19 +91,19 @@ export default function CovidProjectPage() {
             <div>
               <h3 className="font-semibold text-lg mb-2">1. Data Collection &amp; Integration</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                Raw CSV files from Google and CDC were ingested with Pandas. County FIPS codes were used as the join key. Missing mobility values (&lt;3% of records) were linearly interpolated; counties with &gt;30% missing case data were dropped. The final panel dataset contained ~750,000 county-week observations.
+                Raw CSV files from Google and CDC were ingested with PySpark on Databricks. County FIPS codes were used as the join key. Missing mobility values (&lt;3% of records) were linearly interpolated; counties with &gt;30% missing case data were dropped. The final panel dataset contained ~750,000 county-week observations spanning February 2020 through May 2023.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-lg mb-2">2. Exploratory Data Analysis &amp; Feature Engineering</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                Seaborn heatmaps and rolling 7-day average plots were used to identify mobility trend shifts during major policy events. Lag features (7-, 14-, 21-day) were engineered for each mobility category to capture the incubation delay between exposure and confirmed diagnosis. Interaction terms between mobility and population density were added to capture urban vs. rural heterogeneity.
+                Rolling 7-day average plots and heatmaps were used to identify mobility trend shifts during major policy events. Pandemic waves were labeled (Wave 1–3, Delta, Omicron, Post-Omicron) for wave-stratified analysis. Lag features (7-, 14-, 21-day) were engineered for each mobility category to capture the incubation delay between exposure and confirmed diagnosis. Interaction terms between mobility and population density were added to capture urban vs. rural heterogeneity.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-lg mb-2">3. Correlation Analysis</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                Pearson and Spearman correlations were computed between each lagged mobility feature and weekly case incidence. Cross-correlation functions (CCF) identified the optimal lag window—typically 10–14 days—at which mobility had the strongest predictive signal on reported case counts.
+                Pearson correlations were computed between each lagged mobility feature and weekly case incidence at both national and state levels. Cross-correlation functions (CCF) identified the optimal lag window—typically 10–14 days—at which mobility had the strongest predictive signal. State-level correlation coefficients for composite mobility vs. new cases were computed and visualized, revealing meaningful geographic variation in the mobility-transmission relationship.
               </p>
             </div>
             <div>
@@ -115,46 +118,61 @@ export default function CovidProjectPage() {
                 Interrupted time-series (ITS) analysis was applied around state-level stay-at-home order enactment dates to estimate the causal reduction in mobility and the subsequent lagged reduction in new cases, controlling for pre-existing trends.
               </p>
             </div>
+            <div>
+              <h3 className="font-semibold text-lg mb-2">6. Dashboard Development (Databricks)</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3">
+                Two interactive Databricks dashboards were built to communicate findings:
+              </p>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2 list-disc list-inside">
+                <li>
+                  <span className="font-medium">COVID Overview Dashboard:</span> National KPIs, weekly case trend, state rankings by cumulative cases
+                  and case fatality rate, a bubble scatter of cases vs. deaths colored by fatality rate, and a year × month heatmap of national new cases.
+                </li>
+                <li>
+                  <span className="font-medium">Mobility Analysis Dashboard:</span> US composite mobility area chart (2020–2022), state-level correlation bar
+                  chart, monthly mobility vs. cases scatter colored by pandemic wave, and mobility category correlation charts against both cases and deaths.
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
-        {/* Tech Details */}
+        {/* Technical Stack */}
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
           <h2 className="text-2xl font-bold mb-5 flex items-center gap-2">
             <Layers className="w-5 h-5 text-purple-600" />
-            Technical Details
+            Technical Stack
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-              <h3 className="font-semibold mb-3 text-purple-700 dark:text-purple-400">Data Processing</h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc list-inside">
-                <li>Pandas for data wrangling</li>
-                <li>NumPy for numerical ops</li>
-                <li>FIPS-based county joins</li>
-                <li>Linear interpolation for gaps</li>
-                <li>Rolling window aggregation</li>
-              </ul>
+          <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
+                Layer
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200">
+                Tools
+              </div>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-              <h3 className="font-semibold mb-3 text-purple-700 dark:text-purple-400">Modeling</h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc list-inside">
-                <li>XGBoost (gradient boosting)</li>
-                <li>Scikit-learn pipeline</li>
-                <li>Time-series CV (no leakage)</li>
-                <li>SHAP for interpretability</li>
-                <li>ITS for causal inference</li>
-              </ul>
-            </div>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-              <h3 className="font-semibold mb-3 text-purple-700 dark:text-purple-400">Visualization</h3>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc list-inside">
-                <li>Matplotlib / Seaborn</li>
-                <li>Choropleth maps (Plotly)</li>
-                <li>Correlation heatmaps</li>
-                <li>SHAP beeswarm plots</li>
-                <li>Time-series trend lines</li>
-              </ul>
-            </div>
+            {[
+              { layer: "Cloud Platform", tools: "Databricks (Apache Spark)" },
+              { layer: "Data Processing", tools: "PySpark, Pandas, NumPy" },
+              { layer: "Modeling", tools: "XGBoost" },
+              { layer: "Causal Inference", tools: "Interrupted Time-Series (ITS)" },
+              { layer: "Visualization", tools: "Databricks Dashboards" },
+              { layer: "Language", tools: "Python" },
+            ].map((row, i) => (
+              <div key={row.layer} className="grid grid-cols-1 md:grid-cols-2">
+                <div className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700">
+                  {row.layer}
+                </div>
+                <div
+                  className={`px-4 py-3 text-sm text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 ${
+                    i % 2 === 0 ? "md:bg-white dark:md:bg-gray-800" : "md:bg-gray-50/50 dark:md:bg-gray-700/30"
+                  }`}
+                >
+                  {row.tools}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -164,32 +182,98 @@ export default function CovidProjectPage() {
             <BarChart2 className="w-5 h-5 text-purple-600" />
             Key Findings
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { stat: "−0.72", label: "Pearson r between retail mobility and new cases at 14-day lag (statistically significant, p < 0.001)" },
-              { stat: "10–14 days", label: "Optimal predictive lag between mobility decline and observed case reduction, consistent with COVID-19 incubation period" },
-              { stat: "Top 3 features", label: "Retail & Recreation, Workplaces, and Transit Station mobility ranked highest in SHAP feature importance" },
-              { stat: "~18% reduction", label: "Estimated average case incidence drop within 3 weeks of stay-at-home order enactment (ITS analysis)" },
-            ].map((item, i) => (
-              <div key={i} className="border-l-4 border-purple-600 pl-4 py-2">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{item.stat}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{item.label}</div>
-              </div>
-            ))}
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-lg mb-2">National Scale</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>104.72M total cumulative confirmed cases nationally (through May 2023)</li>
+                <li>1.13M total deaths; national case fatality rate of 1.06%</li>
+                <li>Weekly new cases peaked at ~900K during the Omicron wave (Jan 2022), dwarfing all prior waves</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Mobility Trends</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>
+                  US composite mobility dropped to approximately −45% vs. baseline in April 2020 at the height of initial lockdowns, then gradually
+                  recovered toward baseline through 2021–2022
+                </li>
+                <li>Mobility never fully returned to pre-pandemic levels across the study period</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Mobility–Incidence Correlation</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>Pearson r of −0.72 between retail mobility and new cases at 14-day lag (p &lt; 0.001)</li>
+                <li>
+                  Optimal predictive lag of 10–14 days between mobility decline and observed case reduction, consistent with COVID-19 incubation and
+                  reporting delays
+                </li>
+                <li>
+                  State-level correlations varied considerably, with most states showing negative composite mobility–case correlations; a small number of
+                  states showed near-zero or weakly positive correlations, likely reflecting confounding from variant waves
+                </li>
+                <li>
+                  Retail &amp; Recreation and Transit Station mobility showed the strongest negative correlations with both cases and deaths; Parks mobility
+                  showed the weakest (near-zero) correlation
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Wave-Stratified Patterns</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>
+                  Mobility restrictions were deepest during Wave 1; subsequent waves saw progressively less mobility reduction despite comparable or
+                  larger case surges, suggesting behavioral adaptation over time
+                </li>
+                <li>
+                  The Omicron wave produced the highest case counts despite moderate (not extreme) mobility reductions, consistent with its higher
+                  transmissibility
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2">State-Level Patterns</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>California had the highest cumulative case count among all states; Pennsylvania had the highest case fatality rate among the top 20 states</li>
+                <li>Top states by cumulative cases (California, Texas, Florida, Illinois, Pennsylvania) aligned with population size</li>
+                <li>
+                  States with high case fatality rates did not necessarily have the highest total case counts, suggesting CFR is driven by demographic and
+                  healthcare capacity factors beyond raw transmission volume
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Geographic &amp; Demographic Insights</h3>
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
+                <li>The mobility–incidence relationship was significantly stronger in high-density urban counties than in rural counties</li>
+                <li>
+                  Counties with lower median household income showed higher baseline incidence regardless of mobility level, pointing to structural
+                  socioeconomic drivers of transmission
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
-        {/* Geographic Insights */}
+        {/* Conclusions */}
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <Map className="w-5 h-5 text-purple-600" />
-            Geographic &amp; Demographic Insights
+            Conclusions
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            SHAP interaction plots revealed that the mobility–incidence relationship was significantly stronger in high-density urban counties than in rural counties, suggesting that mobility reductions are more effective interventions in densely populated areas. Counties with lower median household income showed higher baseline incidence regardless of mobility level, pointing to structural socioeconomic drivers of transmission.
-          </p>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Choropleth time-lapse maps animated the evolution of both mobility and case incidence across pandemic waves, making the spatial alignment of mobility troughs and subsequent case declines visually intuitive for non-technical stakeholders.
+            This project demonstrates that population mobility is a meaningful leading indicator of COVID-19 transmission, with a consistent 10–14 day
+            lag between mobility changes and case outcomes. However, the relationship weakened over successive pandemic waves as population immunity,
+            variant characteristics, and behavioral adaptation became increasingly dominant factors. The findings support the use of mobility data for
+            early-warning surveillance systems while highlighting that mobility-based interventions are most effective during initial outbreak phases and
+            in high-density settings. Socioeconomic vulnerability emerged as an independent predictor of incidence, underscoring the importance of
+            equity-focused public health policy.
           </p>
         </section>
 

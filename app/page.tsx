@@ -253,17 +253,17 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
-                      <Image src="/images/covid.png?height=240&width=400" alt="Impact of Population Mobility on COVID-19 Incidence" fill className="object-cover" />
+                      <Image src="/images/covid.gif?height=240&width=400" alt="Impact of Population Mobility on COVID-19 Incidence" fill className="object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <p className="text-gray-700 dark:text-gray-300">
                       Using Google mobility and CDC case data, this study analyzes how movement affected COVID-19 dynamics, evaluates policy effectiveness, and identifies key geographical factors with Python and XGBoost.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Data Visualization</Badge>
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">XGBoost</Badge>
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Correlation Analysis</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Databricks</Badge>
                       <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Data Analysis</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Correlation Analysis</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">XGBoost</Badge>
                     </div>
                   </CardContent>
                   <CardFooter>
