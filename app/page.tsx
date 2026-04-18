@@ -511,6 +511,18 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <a
+                  href="https://credentials.databricks.com/185bb37c-6a20-473b-81d2-2021731fc30c#acc.7hfsLv49"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                >
+                  <h4 className="font-semibold">Databricks Certified Data Engineer Associate</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    Validates foundational data engineering skills on the Databricks Lakehouse Platform—building ETL pipelines with Spark SQL/Python and deploying production-ready workflows.
+                  </p>
+                </a>
+
+                <a
                   href="https://coursera.org/verify/WQVFWNKAV47K"
                   target="_blank"
                   rel="noopener noreferrer"
