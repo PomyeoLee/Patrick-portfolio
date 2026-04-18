@@ -514,72 +514,78 @@ export default function Home() {
                   href="https://credentials.databricks.com/185bb37c-6a20-473b-81d2-2021731fc30c#acc.7hfsLv49"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Databricks Certified Data Engineer Associate</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     Validates foundational data engineering skills on the Databricks Lakehouse Platform—building ETL pipelines with Spark SQL/Python and deploying production-ready workflows.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://coursera.org/verify/WQVFWNKAV47K"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">R Programming</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, teaches programming in R for data analysis and statistical computing.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://coursera.org/verify/FDHY6NB4SWPJ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Getting and Cleaning Data</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, covers techniques for acquiring, cleaning, and preparing data for analysis.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://coursera.org/verify/HMCRLTJWVUX3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Exploratory Data Analysis</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, focuses on summarizing and visualizing data to uncover patterns and insights.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://coursera.org/verify/AQEZXSFYK3KE"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Advanced Learning Algorithms</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Stanford University and DeepLearning.AI via Coursera, covers advanced machine learning techniques beyond basic models.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
                 <a
                   href="https://coursera.org/verify/3PDQRY8PMKC6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Unsupervised Learning, Recommenders, Reinforcement Learning</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Stanford University and DeepLearning.AI via Coursera, introduces clustering, recommendation systems, and reinforcement learning algorithms.
                   </p>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
               </div>
