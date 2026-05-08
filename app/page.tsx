@@ -514,12 +514,65 @@ export default function Home() {
                   href="https://credentials.databricks.com/185bb37c-6a20-473b-81d2-2021731fc30c#acc.7hfsLv49"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
-                  <h4 className="font-semibold">Databricks Certified Data Engineer Associate</h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    Validates foundational data engineering skills on the Databricks Lakehouse Platform—building ETL pipelines with Spark SQL/Python and deploying production-ready workflows.
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 rounded-md bg-white/70 dark:bg-gray-800/70 p-2 border border-gray-200/60 dark:border-gray-600/60">
+                      <img
+                        src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/180124187"
+                        alt="Databricks Certified Data Engineer Associate badge"
+                        className="h-14 w-14 object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-semibold">Databricks Certified Data Engineer Associate</h4>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                        Validates data engineering skills on the Databricks Lakehouse Platform—building ETL pipelines with Spark SQL/Python and deploying production-ready workflows.
+                      </p>
+                    </div>
+                  </div>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+
+                <a
+                  href="https://credentials.databricks.com/d7ab06ed-93c9-4b30-a3b7-346f88b524ef"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="shrink-0 rounded-md bg-white/70 dark:bg-gray-800/70 p-2 border border-gray-200/60 dark:border-gray-600/60">
+                      <img
+                        src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/181841332"
+                        alt="Databricks Certified Data Analyst Associate badge"
+                        className="h-14 w-14 object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-semibold">Databricks Certified Data Analyst Associate</h4>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                        Validates data analytics skills on the Databricks Data Intelligence Platform, including data querying, transformation, visualization, dashboard development, and business intelligence workflows.
+                      </p>
+                    </div>
+                  </div>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
@@ -527,12 +580,18 @@ export default function Home() {
                   href="https://coursera.org/verify/WQVFWNKAV47K"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">R Programming</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, teaches programming in R for data analysis and statistical computing.
                   </p>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
@@ -540,12 +599,18 @@ export default function Home() {
                   href="https://coursera.org/verify/FDHY6NB4SWPJ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Getting and Cleaning Data</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, covers techniques for acquiring, cleaning, and preparing data for analysis.
                   </p>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
@@ -553,12 +618,18 @@ export default function Home() {
                   href="https://coursera.org/verify/HMCRLTJWVUX3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Exploratory Data Analysis</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Johns Hopkins University, focuses on summarizing and visualizing data to uncover patterns and insights.
                   </p>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
@@ -566,12 +637,18 @@ export default function Home() {
                   href="https://coursera.org/verify/AQEZXSFYK3KE"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Advanced Learning Algorithms</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Stanford University and DeepLearning.AI via Coursera, covers advanced machine learning techniques beyond basic models.
                   </p>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
@@ -579,12 +656,18 @@ export default function Home() {
                   href="https://coursera.org/verify/3PDQRY8PMKC6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden block bg-gray-50 dark:bg-gray-700 rounded-lg p-4 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden block h-full bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pb-12 shadow-md border-l-4 border-purple-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="font-semibold">Unsupervised Learning, Recommenders, Reinforcement Learning</h4>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
                     This course, offered by Stanford University and DeepLearning.AI via Coursera, introduces clustering, recommendation systems, and reinforcement learning algorithms.
                   </p>
+                  <span
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md bg-gray-50 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors duration-300 group-hover:bg-gray-50/90 dark:bg-gray-700 dark:text-purple-300 dark:group-hover:bg-gray-700/90"
+                  >
+                    <span className="sr-only">View</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </span>
                   <span className="pointer-events-none absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
 
