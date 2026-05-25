@@ -27,7 +27,7 @@
 - Google Cloud Platform (Cloud Run, Google Cloud Storage)
 
 ## Professional Experience
-### Master of Science in Information Science | University of Pittsburgh (Sep 2024 - Present)
+### Master of Science in Information Science | University of Pittsburgh (Sep 2024 - May 2026)
 - Relevant Coursework: Machine Learning, Deep Learning, Data Mining, AI, Database Management, Information Retrieval, Data Visualization, Cloud Computing, Human-Centered Systems.
 
 

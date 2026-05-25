@@ -82,7 +82,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold">Master of Science in Information Science</h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium">University of Pittsburgh</p>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Sep 2024 - Present</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Sep 2024 - May 2026</p>
                 </div>
                 <ul className="space-y-2 list-disc list-inside text-gray-700 dark:text-gray-300">
                   <li>
@@ -146,6 +146,44 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatedCard delay={0.2}>
+              <Link href="/project-detail-market-intelligence" className="block w-full">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                  <CardHeader>
+                    <CardTitle>Market Intelligence MCP</CardTitle>
+                    <CardDescription>FastMCP Server for Pharma Competitive Landscape Analysis</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
+                      <Image
+                        src="/images/market-intelligence.gif?height=240&width=400"
+                        alt="Market Intelligence MCP"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      Built a FastMCP server that accepts a therapeutic indication and drug list, automatically resolves targets and search parameters, orchestrates queries across six public pharma data APIs, and generates structured market-intelligence prompts for AI agents to produce competitive landscape reports without manual API integration or configuration.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">FastMCP</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">MCP</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">API Integration</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Pharma Data</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" className="w-full relative overflow-hidden group bg-transparent pointer-events-auto">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <span className="relative z-10">View Project</span>
+                      <span className="absolute inset-0 bg-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3}>
               <a href="https://nextjs-blog-post-card-202278901138.us-central1.run.app" target="_blank" rel="noopener noreferrer" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -206,7 +244,7 @@ export default function Home() {
               </a>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.3}>
+            <AnimatedCard delay={0.4}>
               <a
                 href="https://xray-interpreter-202278901138.us-west1.run.app/"
                 target="_blank"
@@ -244,7 +282,7 @@ export default function Home() {
               </a>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.4}>
+            <AnimatedCard delay={0.5}>
               <Link href="/project-detail-covid" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -277,7 +315,7 @@ export default function Home() {
               </Link>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.5}>
+            <AnimatedCard delay={0.6}>
               <Link href="/project-detail-breastcancer" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
