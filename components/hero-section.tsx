@@ -20,7 +20,7 @@ export function HeroSection({ info }: HeroSectionProps) {
               <AnimatedText text={info.name} className="text-4xl md:text-5xl font-bold tracking-tight" />
               <AnimatedText
                 text={info.title}
-                className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+                className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
                 once={true}
               />
             </div>

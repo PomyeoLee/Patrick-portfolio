@@ -46,7 +46,7 @@ export default function Home() {
               <div className="space-y-4">
                 <p className="text-lg text-gray-700 dark:text-gray-300">{info.aboutIntro}</p>
                 <p className="text-lg text-gray-700 dark:text-gray-300">{info.aboutBackground}</p>
-                <p className="text-lg text-gray-700 dark:text-gray-300">{info.aboutSkills}</p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 whitespace-pre-line">{info.aboutSkills}</p>
               </div>
             </AnimatedSection>
 
@@ -76,10 +76,21 @@ export default function Home() {
 
           <div className="space-y-8">
             <AnimatedSection delay={0.2}>
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300">
+              <Link
+                href="/transcript"
+                className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-900"
+                aria-label="View transcript"
+              >
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold">Master of Science in Information Science</h3>
+                    <h3 className="text-xl font-bold">
+                      Master of Science in Information Science{" "}
+                      <span className="inline-flex align-middle ml-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-purple-200/80 dark:border-purple-900/70 bg-purple-50/90 dark:bg-purple-900/30 px-3 py-1.5 text-xs font-semibold text-purple-700 dark:text-purple-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                          View transcript
+                        </span>
+                      </span>
+                    </h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium">University of Pittsburgh</p>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Sep 2024 - May 2026</p>
@@ -90,14 +101,42 @@ export default function Home() {
                     Information Retrieval, Data Visualization, Cloud Computing, Human-Centered Systems.
                   </li>
                 </ul>
-              </div>
+              </Link>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300">
+              <div className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg focus-within:ring-2 focus-within:ring-purple-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-50 dark:focus-within:ring-offset-gray-900">
+                <a
+                  href="https://oversea.cnki.net/kcms2/article/abstract?v=kn2pS460sOM5ocRj4HRZbCuiQYhIsji3l0T6dPlT3y1goK8njDhsnWnjTrRCDyHfboWAq_fl-0ZjNjtzvuge1NBRiWGu9-vUJ60CBmp9zT35ST-ReaolGpTwFJfpShO1mLIRgGvQYO6KOlSKqMKpkY8LR79dZW_O1dP-XMx16UP0pFD3aPIkug==&uniplatform=OVERSEA&language=EN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-0 rounded-lg"
+                  aria-label="Open publication"
+                />
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold">Graduate Research Assistant</h3>
+                    <h3 className="text-xl font-bold">
+                      Research Assistant{" "}
+                      <span className="inline-flex align-middle ml-2 gap-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                        <a
+                          href="https://oversea.cnki.net/kcms2/article/abstract?v=kn2pS460sONV6d_pY9hUpYVEuJy6TzNJMxw2EMP-u6oedLHQsBiXq-W2PzChrIBf4UEyg8EZjaX8a3KA09TS74PxidsNJE1HLN44JEGqKu8mccBPvxOgNHBCo0oNNauIs8cM65dqhcbW2ekDt3fciffrLNPIkOsFLZDZeK0h_C0FFlSr0zqRog==&uniplatform=OVERSEA&language=EN"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-purple-200/80 dark:border-purple-900/70 bg-purple-50/90 dark:bg-purple-900/30 px-2.5 py-1 text-xs font-semibold text-purple-700 dark:text-purple-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+                        >
+                          View Publication (2023)
+                        </a>
+
+                        <a
+                          href="https://oversea.cnki.net/kcms2/article/abstract?v=kn2pS460sOPZE42VkR7pGNFbh6dHClXhBG8q0r_lr_BBpCS0WsV2DrEs6WuJ8-ZN0v74sXypAViplQ0wBgkxgVKyPQB0HsrrFqk7ezcLTZ5C_brY0xLbI0ErjozkVGvrwgl8BF4f-wQWOiMKbp7JaXlpqCkfJIPzFgwwzbKNjG-EWxeb9AoGLg==&uniplatform=OVERSEA&language=EN"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-purple-200/80 dark:border-purple-900/70 bg-purple-50/90 dark:bg-purple-900/30 px-2.5 py-1 text-xs font-semibold text-purple-700 dark:text-purple-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+                        >
+                          View Publication (2022)
+                        </a>
+                      </span>
+                    </h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium">Beijing University of Technology</p>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Sep 2020 - Jun 2024</p>
@@ -107,12 +146,13 @@ export default function Home() {
                     Contributed to the design and analysis of experiments to optimize phosphorus removal using
                     data-driven methods
                   </li>
-                  <li>Managed and monitored data from four SBRs to evaluate water purification performance</li>
                   <li>
-                    Applied data transformation, modeling, and statistical analysis to explore relationships between
-                    multiple factors
+                    Created detailed reports and dashboards with data visualizations to communicate research insights
                   </li>
-                  <li>Created detailed reports and dashboards with data visualizations to communicate research insights</li>
+                  <li>
+                    Applied data transformation, modeling, and statistical analysis to explore relationships between multiple
+                    factors
+                  </li>
                 </ul>
               </div>
             </AnimatedSection>
@@ -360,7 +400,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold mb-8 text-center">Technical Skills</h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.2}>
               <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                 <CardHeader>
@@ -368,60 +408,78 @@ export default function Home() {
                     <span className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-2">
                       <span className="text-purple-600 dark:text-purple-300 text-sm font-bold">AI</span>
                     </span>
-                    Machine Learning
+                    Core ML / AI
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-3">
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Machine Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
                       Deep Learning
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
-                    >
-                      Neural Networks
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"              
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
                       NLP
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
-                      Model Fine-Tuning
+                      LLMs
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
-                      Feature Engineering
+                      RAG
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
-                      Pretrained Models
+                      Transfer Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Fine-tuning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      SHAP & Grad-CAM
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      XGBoost
                     </Badge>
                   </div>
                 </CardContent>
               </Card>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={0.3}>
+            <AnimatedSection direction="up" delay={0.25}>
               <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <span className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-2">
-                      <span className="text-blue-600 dark:text-blue-300 text-sm font-bold">DEV</span>
+                      <span className="text-blue-600 dark:text-blue-300 text-sm font-bold">LIB</span>
                     </span>
-                    Programming & Frameworks
+                    Frameworks & Libraries
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -430,7 +488,7 @@ export default function Home() {
                       variant="secondary"
                       className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
-                      Python
+                      PyTorch
                     </Badge>
                     <Badge
                       variant="secondary"
@@ -442,41 +500,57 @@ export default function Home() {
                       variant="secondary"
                       className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
-                      PyTorch
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
-                    >
                       Scikit-learn
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
-                      Flask/FastAPI
+                      Keras
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
-                      Databricks
+                      Pandas
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      NumPy
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      Matplotlib
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      Seaborn
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      Plotly
                     </Badge>
                   </div>
                 </CardContent>
               </Card>
             </AnimatedSection>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
-            <AnimatedSection direction="up" delay={0.4}>
+            <AnimatedSection direction="up" delay={0.3}>
               <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <span className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-2">
                       <span className="text-green-600 dark:text-green-300 text-sm font-bold">DATA</span>
                     </span>
-                    Data Science & Analytics
+                    Data Engineering & Analytics
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -485,13 +559,37 @@ export default function Home() {
                       variant="secondary"
                       className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                     >
-                      Data Analysis
+                      SQL
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                     >
-                      Pandas & NumPy
+                      ETL Pipelines
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      PySpark
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      Databricks
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      Data Preprocessing
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      Feature Engineering
                     </Badge>
                     <Badge
                       variant="secondary"
@@ -503,31 +601,178 @@ export default function Home() {
                       variant="secondary"
                       className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                     >
-                      Statistical Analysis
+                      Tableau
                     </Badge>
                     <Badge
                       variant="secondary"
                       className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                     >
-                      SQL
+                      Dash
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.35}>
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <span className="w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mr-2">
+                      <span className="text-teal-600 dark:text-teal-300 text-sm font-bold">OPS</span>
+                    </span>
+                    MLOps & Deployment
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
+                    >
+                      MLflow
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
                     >
-                      Jupyter Notebooks
+                      Docker
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
                     >
-                      Matplotlib/Seaborn
+                      CI/CD
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
                     >
-                      Data Preprocessing
+                      Flask
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
+                    >
+                      FastAPI
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
+                    >
+                      Serverless Deployment
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.4}>
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <span className="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center mr-2">
+                      <span className="text-orange-600 dark:text-orange-300 text-sm font-bold">CLOUD</span>
+                    </span>
+                    Cloud & Infrastructure
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      AWS (S3, Glue, Athena)
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      BigQuery
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      Vertex AI
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      Cloud Run
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      Pinecone
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      Spark
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      PostgreSQL
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      MySQL
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.45}>
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center mr-2">
+                      <span className="text-slate-600 dark:text-slate-300 text-sm font-bold">SWE</span>
+                    </span>
+                    Software Engineering
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-colors"
+                    >
+                      Python
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-colors"
+                    >
+                      R
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-colors"
+                    >
+                      Bash
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-colors"
+                    >
+                      Git
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-colors"
+                    >
+                      Next.js
                     </Badge>
                   </div>
                 </CardContent>
