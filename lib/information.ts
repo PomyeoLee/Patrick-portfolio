@@ -76,7 +76,7 @@ export function getPersonalInfo(): PersonalInfo {
   } catch (error) {
     // Fallback data if file reading fails
     return {
-      name: "Pengyao Li",
+      name: "Patrick Li",
       title: "AI & Data Engineer",
       email: "pitafimurad99@gmail.com",
       linkedin: "https://www.linkedin.com/in/pengyao-li/",

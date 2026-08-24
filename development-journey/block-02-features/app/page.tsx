@@ -1,3 +1,7 @@
+/**
+ * Block 2 milestone page — includes Block 1 + projects, skills, certifications, contact, motion.
+ * Project cards link to #projects (detail pages / deploy polish come in Block 3).
+ */
 import Link from "next/link";
 
 import Image from "next/image"
@@ -16,6 +20,7 @@ import {
   AnimatedGradientBackground,
 } from "@/components/client-animations"
 import { getPersonalInfo } from "@/lib/information"
+import { ContactForm } from "@/components/contact-form"
 
 export default function Home() {
   const info = getPersonalInfo()
@@ -76,20 +81,13 @@ export default function Home() {
 
           <div className="space-y-8">
             <AnimatedSection delay={0.2}>
-              <Link
-                href="/transcript"
-                className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-900"
-                aria-label="View transcript"
+              <div
+                className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-purple-600 hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-bold">
-                      Master of Science in Information Science{" "}
-                      <span className="inline-flex align-middle ml-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                        <span className="inline-flex items-center gap-2 rounded-full border border-purple-200/80 dark:border-purple-900/70 bg-purple-50/90 dark:bg-purple-900/30 px-3 py-1.5 text-xs font-semibold text-purple-700 dark:text-purple-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                          View transcript
-                        </span>
-                      </span>
+                      Master of Science in Information Science
                     </h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium">University of Pittsburgh</p>
                   </div>
@@ -101,7 +99,7 @@ export default function Home() {
                     Information Retrieval, Data Visualization, Cloud Computing, Human-Centered Systems.
                   </li>
                 </ul>
-              </Link>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
@@ -116,7 +114,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-bold">
-                      Research Data Analyst{" "}
+                      Quantitative Research Assistant{" "}
                       <span className="inline-flex align-middle ml-2 gap-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
                         <a
                           href="https://oversea.cnki.net/kcms2/article/abstract?v=kn2pS460sONV6d_pY9hUpYVEuJy6TzNJMxw2EMP-u6oedLHQsBiXq-W2PzChrIBf4UEyg8EZjaX8a3KA09TS74PxidsNJE1HLN44JEGqKu8mccBPvxOgNHBCo0oNNauIs8cM65dqhcbW2ekDt3fciffrLNPIkOsFLZDZeK0h_C0FFlSr0zqRog==&uniplatform=OVERSEA&language=EN"
@@ -138,9 +136,9 @@ export default function Home() {
                       </span>
                     </h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium">
-                      Beijing University of Technology
+                      Key Laboratory of Beijing Water Quality Science and Water Environment Recovery Engineering,
                       <br />
-                      Key Laboratory of Water Quality Science and Water Environment Recovery Engineering
+                      Beijing University of Technology
                     </p>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Aug 2020 - Jun 2024</p>
@@ -199,7 +197,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatedCard delay={0.2}>
-              <Link href="/project-detail-market-intelligence" className="block w-full">
+              <Link href="#projects" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
                     <CardTitle>Market Intelligence MCP</CardTitle>
@@ -336,7 +334,7 @@ export default function Home() {
             </AnimatedCard>
 
             <AnimatedCard delay={0.5}>
-              <Link href="/project-detail-covid" className="block w-full">
+              <Link href="#projects" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
                     <CardTitle>Impact of Population Mobility on COVID-19 Incidence</CardTitle>
@@ -369,7 +367,7 @@ export default function Home() {
             </AnimatedCard>
 
             <AnimatedCard delay={0.6}>
-              <Link href="/project-detail-breastcancer" className="block w-full">
+              <Link href="#projects" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
                     <CardTitle>Wisconsin Breast Cancer Dataset Analysis</CardTitle>
@@ -978,11 +976,18 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl relative z-10">
           <AnimatedSection>
             <h2 className="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+            <p className="text-center text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+              {info.contactMessage}
+            </p>
           </AnimatedSection>
 
-          <div className="flex justify-center">
-            <AnimatedSection direction="up" delay={0.2}>
-              <div className="flex gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <AnimatedSection direction="left" delay={0.2}>
+              <ContactForm />
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.3}>
+              <div className="space-y-6">
                 <div className="flex items-center hover:translate-x-1 transition-transform duration-300">
                   <Mail className="w-5 h-5 text-purple-600 mr-3" />
                   <a

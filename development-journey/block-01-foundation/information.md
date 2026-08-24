@@ -38,8 +38,8 @@
 - Relevant Coursework: Machine Learning, Deep Learning, Data Mining, AI, Database Management, Information Retrieval, Data Visualization, Cloud Computing, Human-Centered Systems.
 
 
-### Research Data Analyst | Beijing University of Technology
-Key Laboratory of Water Quality Science and Water Environment Recovery Engineering (Aug 2020 - Jun 2024)
+### Quantitative Research Assistant | Key Laboratory of Beijing Water Quality Science and Water Environment Recovery Engineering,
+Beijing University of Technology (Aug 2020 - Jun 2024)
 - Collected, structured, and maintained experimental and operational datasets to support quantitative research studies.
 - Performed data preprocessing, cleaning, and transformation to ensure statistical validity and analytical readiness.
 - Applied quantitative and statistical methods to analyze relationships, test hypotheses, and evaluate system or process performance.
