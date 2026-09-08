@@ -8,6 +8,11 @@ import 'server-only';
 import fs from "fs";
 import path from "path";
 
+export interface ExpertiseCategory {
+  category: string
+  items: string[]
+}
+
 export interface PersonalInfo {
   name: string
   title: string
@@ -19,9 +24,47 @@ export interface PersonalInfo {
   aboutIntro: string
   aboutBackground: string
   aboutSkills: string
-  keyExpertise: string[]
+  keyExpertise: ExpertiseCategory[]
   contactMessage: string
 }
+
+const KEY_EXPERTISE: ExpertiseCategory[] = [
+  {
+    category: "AI & Machine Learning",
+    items: [
+      "ML / Deep Learning · Computer Vision · NLP",
+      "LLMs, RAG & Vector Databases",
+      "Prompt Engineering & API Orchestration",
+      "Speech Synthesis (TTS)",
+      "Statistical Modeling & Interpretability",
+    ],
+  },
+  {
+    category: "Business Analytics & BI",
+    items: [
+      "KPI & Funnel Analysis",
+      "Customer Segmentation, RFM & Lifecycle",
+      "Cohort, Churn & Retention",
+      "Product Performance Analysis",
+      "SQL Analytics & Business Intelligence",
+    ],
+  },
+  {
+    category: "Data Engineering",
+    items: [
+      "ETL Pipelines · PySpark · Databricks",
+      "GCP (Cloud Run, BigQuery, GCS)",
+    ],
+  },
+  {
+    category: "MLOps & Productization",
+    items: [
+      "Model Deployment, Docker & CI/CD",
+      "Dashboards (Tableau, Plotly, Streamlit)",
+      "AI-assisted Full-stack Prototyping",
+    ],
+  },
+]
 
 export function getPersonalInfo(): PersonalInfo {
   try {
@@ -55,20 +98,7 @@ export function getPersonalInfo(): PersonalInfo {
       aboutIntro: extractBlockValue("Intro") || extractValue("Intro"),
       aboutBackground: extractBlockValue("Background") || extractValue("Background"),
       aboutSkills: extractBlockValue("Skills") || extractValue("Skills"),
-      keyExpertise: [
-        "Machine Learning & Deep Learning Model Development",
-        "LLM Integration, Prompt Engineering & API Orchestration",
-        "RAG Pipelines & Vector Database Integration",
-        "Model Deployment, Containerization & CI/CD Pipelines",
-        "Computer Vision & NLP Applications",
-        "Speech Synthesis (TTS) & Multi-speaker Audio Pipeline Engineering",
-        "Data Engineering & ETL Pipeline Design",
-        "Big Data Processing with PySpark & Databricks",
-        "Google Cloud Platform (Cloud Run, Cloud Scheduler, GCS, BigQuery)",
-        "Statistical Modeling, Causal Inference & Interpretability (SHAP, Grad-CAM)",
-        "Data Visualization & Dashboard Development (Tableau, Plotly, Streamlit)",
-        "AI-assisted Full-stack MVP Prototyping (Cursor, Claude Code)",
-      ],
+      keyExpertise: KEY_EXPERTISE,
       contactMessage:
         extractValue("Contact Message") ||
         "I'm always open to discussing new projects, opportunities, or partnerships. Feel free to reach out!",
@@ -77,7 +107,7 @@ export function getPersonalInfo(): PersonalInfo {
     // Fallback data if file reading fails
     return {
       name: "Patrick Li",
-      title: "AI & Data Engineer",
+      title: "AI & Data Scientist",
       email: "pitafimurad99@gmail.com",
       linkedin: "https://www.linkedin.com/in/pengyao-li/",
       github: "https://github.com/PomyeoLee",
@@ -90,7 +120,7 @@ export function getPersonalInfo(): PersonalInfo {
         "I specialize in Python-based ML systems using TensorFlow, PyTorch, and scikit-learn, with experience building production-grade AI applications, including LLM-integrated systems deployed on Google Cloud Run. I’ve worked extensively with large-scale data processing using PySpark and Databricks, and with cloud platforms such as GCP and AWS.",
       aboutSkills:
         "Core ML / AI\nMachine Learning (supervised, unsupervised) · Deep Learning (CNNs, Transformers) · NLP · LLMs · RAG · Transfer Learning · Fine-tuning · Model Explainability (SHAP, Grad-CAM) · XGBoost\n\nFrameworks & Libraries\nPyTorch · TensorFlow · Scikit-learn · Keras · Pandas · NumPy · Matplotlib · Seaborn · Plotly\n\nData Engineering & Analytics\nSQL · ETL Pipelines · PySpark · Databricks · Data preprocessing · Feature engineering · Data visualization · Tableau · Dash\n\nMLOps & Deployment\nMLflow · Docker · CI/CD · Flask · FastAPI · Serverless deployment\n\nCloud & Infrastructure\nAWS (S3, Glue, Athena) · GCP (BigQuery, Vertex AI, Cloud Run) · Vector DBs (Pinecone) · Spark · PostgreSQL · MySQL\n\nSoftware Engineering\nPython · R · Bash · Git · Next.js",
-
+      keyExpertise: KEY_EXPERTISE,
       contactMessage:
         "I'm always open to discussing new projects, opportunities, or partnerships. Feel free to reach out!",
     }

@@ -2,7 +2,7 @@
 
 ## Basic Info
 - **Name**: Patrick Li 
-- **Title**:  AI & Data Engineer
+- **Title**:  AI & Data Scientist
 - **Email**: lipengyao2023@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/pengyao-li/
 - **GitHub**: https://github.com/PomyeoLee

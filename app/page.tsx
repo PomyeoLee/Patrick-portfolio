@@ -52,15 +52,24 @@ export default function Home() {
 
             <AnimatedSection direction="right" delay={0.4}>
               <div>
-                <h3 className="text-xl font-semibold mb-4">Key Expertise</h3>
-                <ul className="space-y-2">
-                  {info.keyExpertise.map((skill, index) => (
-                    <li key={index} className="flex items-start group">
-                      <ChevronRight className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0 transform group-hover:translate-x-1 transition-transform duration-300" />
-                      <span className="text-gray-700 dark:text-gray-300">{skill}</span>
-                    </li>
+                <h3 className="text-xl font-semibold mb-5">Key Expertise</h3>
+                <div className="space-y-5">
+                  {info.keyExpertise.map((group) => (
+                    <div key={group.category}>
+                      <h4 className="text-sm font-semibold uppercase tracking-wide text-purple-600 dark:text-purple-400 mb-2">
+                        {group.category}
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {group.items.map((skill) => (
+                          <li key={skill} className="flex items-start group">
+                            <ChevronRight className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0 transform group-hover:translate-x-1 transition-transform duration-300" />
+                            <span className="text-sm text-gray-700 dark:text-gray-300">{skill}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </AnimatedSection>
           </div>
@@ -199,6 +208,44 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatedCard delay={0.2}>
+              <Link href="/project-detail-ecommerce" className="block w-full">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                  <CardHeader>
+                    <CardTitle>E-Commerce Customer &amp; Product Analytics</CardTitle>
+                    <CardDescription>RFM Segmentation, Cohort Retention, and Product Affinity</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
+                      <Image
+                        src="/images/e_commerical.gif"
+                        alt="E-Commerce Customer & Product Analytics"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      Built an end-to-end analytics pipeline on e-commerce orders to profile customers, rank products, and surface revenue drivers. Combined SQL and Python EDA with RFM segmentation, cohort retention, and market-basket analysis, then packaged findings in a dashboard for merchandising and marketing decisions.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">RFM</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Cohort Analysis</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">SQL</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Databricks</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" className="w-full relative overflow-hidden group bg-transparent pointer-events-auto">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <span className="relative z-10">View Project</span>
+                      <span className="absolute inset-0 bg-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3}>
               <Link href="/project-detail-market-intelligence" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -236,7 +283,7 @@ export default function Home() {
               </Link>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.3}>
+            <AnimatedCard delay={0.4}>
               <a href="https://nextjs-blog-post-card-202278901138.us-central1.run.app" target="_blank" rel="noopener noreferrer" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -297,7 +344,7 @@ export default function Home() {
               </a>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.4}>
+            <AnimatedCard delay={0.5}>
               <a
                 href="https://xray-interpreter-202278901138.us-west1.run.app/"
                 target="_blank"
@@ -335,7 +382,7 @@ export default function Home() {
               </a>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.5}>
+            <AnimatedCard delay={0.6}>
               <Link href="/project-detail-covid" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -368,7 +415,7 @@ export default function Home() {
               </Link>
             </AnimatedCard>
 
-            <AnimatedCard delay={0.6}>
+            <AnimatedCard delay={0.7}>
               <Link href="/project-detail-breastcancer" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
@@ -621,6 +668,83 @@ export default function Home() {
                       className="justify-center py-2 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                     >
                       Dash
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.32}>
+              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <span className="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-900 flex items-center justify-center mr-2">
+                      <span className="text-rose-600 dark:text-rose-300 text-sm font-bold">BI</span>
+                    </span>
+                    Business Analysis
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      KPI
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Funnel
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Customer Segmentation
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      RFM
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Cohort
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Churn & Retention
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Customer Lifecycle
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Product Performance
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      SQL Analytics
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      Business Intelligence
                     </Badge>
                   </div>
                 </CardContent>
