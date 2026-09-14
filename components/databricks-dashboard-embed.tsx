@@ -22,6 +22,8 @@ type DatabricksDashboardEmbedProps = {
   description?: string
   children?: ReactNode
   unframed?: boolean
+  /** Defer iframe init until near the viewport; keep mounted after first load. */
+  lazyUntilVisible?: boolean
 }
 
 export function DatabricksDashboardEmbed({
@@ -30,10 +32,13 @@ export function DatabricksDashboardEmbed({
   description,
   children,
   unframed = false,
+  lazyUntilVisible = false,
 }: DatabricksDashboardEmbedProps) {
+  const hostRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const dashboardRef = useRef<DatabricksDashboard | null>(null)
   const { resolvedTheme } = useTheme()
+  const [isVisible, setIsVisible] = useState(!lazyUntilVisible)
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [heading, setHeading] = useState(title ?? "")
@@ -55,7 +60,13 @@ export function DatabricksDashboardEmbed({
     if (typeof cfg.tokenExpiresAt === "number" && cfg.tokenExpiresAt > 0) {
       return Math.floor(cfg.tokenExpiresAt - Date.now() / 1000)
     }
-    if (typeof cfg.expiresIn === "number" && cfg.expiresIn > 0) return Math.floor(cfg.expiresIn)
+    if (typeof cfg.expiresIn === "number" && cfg.expiresIn > 0) {
+      if (typeof cfg.serverTimeMs === "number" && cfg.serverTimeMs > 0) {
+        const elapsedSeconds = (Date.now() - cfg.serverTimeMs) / 1000
+        return Math.floor(cfg.expiresIn - elapsedSeconds)
+      }
+      return Math.floor(cfg.expiresIn)
+    }
     return null
   }, [])
 
@@ -78,6 +89,25 @@ export function DatabricksDashboardEmbed({
   }, [title, dashboardId])
 
   useEffect(() => {
+    if (!lazyUntilVisible || isVisible) return
+    const el = hostRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        setIsVisible(true)
+        observer.disconnect()
+      },
+      { rootMargin: "200px 0px", threshold: 0.01 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [lazyUntilVisible, isVisible])
+
+  useEffect(() => {
+    if (!isVisible) return
+
     let cancelled = false
     let getNewTokenInFlight: Promise<string> | null = null
 
@@ -88,7 +118,7 @@ export function DatabricksDashboardEmbed({
       setErrorMessage(null)
 
       try {
-        let config = await fetchFreshEnoughConfig(300)
+        const config = await fetchFreshEnoughConfig(300)
         if (cancelled || !containerRef.current) return
 
         // Prefer the authored title when provided (e.g. "Dashboard 1 — Executive Overview").
@@ -140,7 +170,9 @@ export function DatabricksDashboardEmbed({
       dashboardRef.current?.destroy()
       dashboardRef.current = null
     }
-  }, [fetchFreshEnoughConfig, resolvedTheme, dashboardId, title])
+  }, [isVisible, fetchFreshEnoughConfig, resolvedTheme, dashboardId, title])
+
+  const showLoading = !isVisible || status === "loading"
 
   const content = (
     <>
@@ -164,7 +196,7 @@ export function DatabricksDashboardEmbed({
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 leading-relaxed">{description}</p>
       ) : null}
       <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 relative w-full aspect-video overflow-hidden">
-        {status === "loading" && (
+        {showLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-50/90 dark:bg-gray-900/90">
             <div className="flex flex-col items-center gap-3">
               <div className="h-9 w-9 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
@@ -173,7 +205,7 @@ export function DatabricksDashboardEmbed({
           </div>
         )}
 
-        {status === "error" && (
+        {isVisible && status === "error" && (
           <div className="absolute inset-0 flex items-center justify-center p-8 z-10 overflow-y-auto">
             <div className="max-w-xl text-center space-y-3">
               <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
@@ -192,17 +224,22 @@ export function DatabricksDashboardEmbed({
         <div
           ref={containerRef}
           className="absolute inset-0 w-full h-full min-h-0 overflow-hidden"
-          aria-busy={status === "loading"}
+          aria-busy={showLoading}
         />
       </div>
       {children}
     </>
   )
 
-  if (unframed) return <div>{content}</div>
+  if (unframed) {
+    return <div ref={hostRef}>{content}</div>
+  }
 
   return (
-    <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7 overflow-hidden">
+    <section
+      ref={hostRef}
+      className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7 overflow-hidden"
+    >
       {content}
     </section>
   )

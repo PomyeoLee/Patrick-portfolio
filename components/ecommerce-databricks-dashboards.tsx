@@ -6,6 +6,13 @@ import { DatabricksDashboardEmbed } from "@/components/databricks-dashboard-embe
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 
+function markVisited(prev: ReadonlySet<string>, id: string): ReadonlySet<string> {
+  if (prev.has(id)) return prev
+  const next = new Set(prev)
+  next.add(id)
+  return next
+}
+
 type DashboardNarrative = {
   id: string
   tabLabel: string
@@ -204,6 +211,10 @@ function NarrativeBlock({
 
 export function EcommerceDatabricksDashboards() {
   const [activeTab, setActiveTab] = useState(ECOMMERCE_DASHBOARDS[0].id)
+  // Mount each dashboard iframe only on first open; keep visited ones cached.
+  const [visitedTabs, setVisitedTabs] = useState<ReadonlySet<string>>(
+    () => new Set([ECOMMERCE_DASHBOARDS[0].id])
+  )
   const sectionRef = useRef<HTMLElement>(null)
   const activeIndex = ECOMMERCE_DASHBOARDS.findIndex((d) => d.id === activeTab)
   const safeIndex = activeIndex >= 0 ? activeIndex : 0
@@ -212,7 +223,7 @@ export function EcommerceDatabricksDashboards() {
 
   const selectTab = (id: string) => {
     setActiveTab(id)
-    // Defer so the new tab content mounts before scrolling.
+    setVisitedTabs((prev) => markVisited(prev, id))
     requestAnimationFrame(() => {
       sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
     })
@@ -271,20 +282,29 @@ export function EcommerceDatabricksDashboards() {
           </div>
         </div>
 
-        {ECOMMERCE_DASHBOARDS.map((dashboard) => (
-          <TabsContent key={dashboard.id} value={dashboard.id} className="mt-0 focus-visible:ring-0">
-            <DatabricksDashboardEmbed
-              unframed
-              dashboardId={dashboard.dashboardId}
-              title={dashboard.title}
-              description={dashboard.question}
+        {ECOMMERCE_DASHBOARDS.map((dashboard) => {
+          if (!visitedTabs.has(dashboard.id)) return null
+
+          return (
+            <TabsContent
+              key={dashboard.id}
+              value={dashboard.id}
+              forceMount
+              className="mt-0 focus-visible:ring-0 data-[state=inactive]:hidden"
             >
-              <NarrativeBlock heading="Key Findings" bullets={dashboard.findings} />
-              <NarrativeBlock heading="Business Implications" paragraphs={dashboard.implications} />
-              <NarrativeBlock heading="Recommended Actions" bullets={dashboard.actions} />
-            </DatabricksDashboardEmbed>
-          </TabsContent>
-        ))}
+              <DatabricksDashboardEmbed
+                unframed
+                dashboardId={dashboard.dashboardId}
+                title={dashboard.title}
+                description={dashboard.question}
+              >
+                <NarrativeBlock heading="Key Findings" bullets={dashboard.findings} />
+                <NarrativeBlock heading="Business Implications" paragraphs={dashboard.implications} />
+                <NarrativeBlock heading="Recommended Actions" bullets={dashboard.actions} />
+              </DatabricksDashboardEmbed>
+            </TabsContent>
+          )
+        })}
       </Tabs>
     </section>
   )
