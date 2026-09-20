@@ -32,7 +32,10 @@ const KEY_EXPERTISE: ExpertiseCategory[] = [
   {
     category: "AI & Machine Learning",
     items: [
-      "ML / Deep Learning · Computer Vision · NLP",
+      "ML / Deep Learning · Transformers · NLP",
+      "Multi-Task Learning · Contrastive Learning",
+      "Representation Learning & Neural Network Stacking",
+      "Feature Engineering & Behavioral Modeling",
       "LLMs, RAG & Vector Databases",
       "Prompt Engineering & API Orchestration",
       "Speech Synthesis (TTS)",

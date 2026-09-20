@@ -20,22 +20,14 @@ export default function EcommerceAnalyticsProjectPage() {
 
       <div className="container mx-auto max-w-5xl px-4 py-12">
         <div className="mb-10">
-          <h1 className="text-4xl font-bold mb-5 leading-tight">
-            E-Commerce Customer &amp; Product Analytics
+          <h1 className="text-4xl font-bold mb-3 leading-tight">
+            Large-Scale E-Commerce Customer &amp; Product Analytics
           </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-5">
+            Event ingestion → multi-layer transformation → segmentation → dashboard delivery
+          </p>
           <div className="flex flex-wrap gap-2">
-            {[
-              "KPI",
-              "Funnel",
-              "Customer Segmentation",
-              "RFM",
-              "Cohort",
-              "Churn & Retention",
-              "Customer Lifecycle",
-              "Product Performance",
-              "SQL",
-              "Business Intelligence",
-            ].map((tag) => (
+            {["PySpark", "Databricks", "Delta Lake", "Lakeview Dashboards"].map((tag) => (
               <Badge key={tag} variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50">
                 {tag}
               </Badge>
@@ -46,23 +38,91 @@ export default function EcommerceAnalyticsProjectPage() {
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-purple-600" />
-            Project Overview
+            Overview
           </h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            Retail teams often have large volumes of customer behavior data but limited visibility into who to retain, which products drive conversion, and where customers drop off. This project transforms{" "}
-            <strong>200M+ e-commerce events</strong> into a decision-ready analytics layer for understanding customer behavior, product performance, conversion, search, and retention.
-          </p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-            The project uses Python, SQL, and Databricks to build a scalable{" "}
-            <strong>Bronze → Silver → Gold</strong> data architecture and six interactive AI/BI dashboards covering RFM segmentation, cohort retention, product performance, funnel analysis, and search-driven conversion.
+            End-to-end behavioral analytics pipeline: event ingestion → multi-layer transformation →
+            customer segmentation → dashboard delivery.
           </p>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            The analysis identified key business insights, including a{" "}
-            <strong>4.14% purchase rate</strong>, <strong>60.9% cart abandonment</strong>,{" "}
-            <strong>6.8× higher conversion</strong> among search users, and{" "}
-            <strong>62.7% customer inactivity</strong>, highlighting opportunities for conversion optimization
-            and customer retention.
+            <strong>Data:</strong> Anonymized e-commerce event data — approximately{" "}
+            <strong>22M customer identities</strong>, <strong>200M page visits</strong>, and{" "}
+            <strong>2.3M purchases</strong>.
           </p>
+        </section>
+
+        <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Layers className="w-5 h-5 text-purple-600" />
+            Architecture
+          </h2>
+          <ul className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed list-disc list-outside ml-5">
+            <li>Designed and implemented the analytics architecture on Databricks</li>
+            <li>
+              Developed four Gold-layer PySpark transformation scripts: customer features, product
+              metrics, funnel/retention metrics, and search analytics
+            </li>
+            <li>Built and published six Lakeview dashboards covering all core business questions</li>
+            <li>Validated dashboard metrics against live Gold/Silver tables</li>
+          </ul>
+        </section>
+
+        <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <GitBranch className="w-5 h-5 text-purple-600" />
+            Analytics Scope
+          </h2>
+          <ul className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed list-disc list-outside ml-5">
+            <li>
+              <strong>Customer segmentation:</strong> Behavioral segmentation and RFM scoring logic
+            </li>
+            <li>
+              <strong>Funnel analysis:</strong> Cart abandonment, conversion rates, and checkout
+              timing patterns
+            </li>
+            <li>
+              <strong>Search analytics:</strong> Search-to-purchase lift and search behavior profiling
+            </li>
+            <li>
+              <strong>Retention &amp; cohort analysis:</strong> Month-1 retention and acquisition
+              cohort comparison
+            </li>
+            <li>
+              <strong>Product performance:</strong> High-intent SKUs and categories with weak purchase
+              conversion
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <Database className="w-5 h-5 text-purple-600" />
+            Results
+          </h2>
+          <ul className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed list-disc list-outside ml-5">
+            <li>
+              Identified <strong>cart-to-purchase as the primary conversion bottleneck</strong>:
+              60.9% cart abandonment, while 74.1% of completed purchases occurred within 1 hour of
+              cart add
+            </li>
+            <li>
+              Found that <strong>searchers converted at ~6.9× the rate of non-searchers</strong>,
+              identifying search as a major conversion lever
+            </li>
+            <li>
+              Flagged <strong>62.7% of customers as inactive for 45+ days</strong> and found weaker
+              early retention among later acquisition cohorts, providing evidence for evaluating
+              customer acquisition quality
+            </li>
+            <li>
+              Identified high-intent SKUs with strong cart activity but weak purchase conversion,
+              highlighting product-level conversion gaps
+            </li>
+            <li>
+              <strong>Prevented incorrect campaign targeting</strong> by detecting and correcting an
+              RFM scoring inversion before customer segmentation was used downstream
+            </li>
+          </ul>
         </section>
 
         <EcommerceDatabricksDashboards />

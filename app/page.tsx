@@ -208,30 +208,71 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatedCard delay={0.2}>
+              <Link href="/project-detail-ecommerce-representation" className="block w-full">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                  <CardHeader>
+                    <CardTitle>E-Commerce Behavioral Representation Learning</CardTitle>
+                    <CardDescription>Multi-Task &amp; Contrastive Transformers for Churn and Propensity</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-[#f4f0fa] dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
+                      <Image
+                        src="/images/pipeline_animation.gif"
+                        alt="E-Commerce Behavioral Representation Learning pipeline"
+                        fill
+                        className="object-contain p-2"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      Built a multi-task e-commerce prediction pipeline combining behavioral feature engineering, MTL and contrastive Transformers, and a neural stacking model to predict customer churn and purchase propensity. Trained on 853K users and 136M behavioral events, achieving 0.792 SKU and 0.789 category propensity AUC on held-out users.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">PyTorch</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Transformers</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Multi-Task Learning</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Contrastive Learning</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Neural Network Stacking</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Feature Engineering</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Representation Learning</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" className="w-full relative overflow-hidden group bg-transparent pointer-events-auto">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <span className="relative z-10">View Project</span>
+                      <span className="absolute inset-0 bg-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.25}>
               <Link href="/project-detail-ecommerce" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
-                    <CardTitle>E-Commerce Customer &amp; Product Analytics</CardTitle>
-                    <CardDescription>RFM Segmentation, Cohort Retention, and Product Affinity</CardDescription>
+                    <CardTitle>Large-Scale E-Commerce Customer &amp; Product Analytics</CardTitle>
+                    <CardDescription>Behavioral Segmentation, Funnel &amp; Search Analytics on Databricks</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
                       <Image
                         src="/images/e_commerical.gif"
-                        alt="E-Commerce Customer & Product Analytics"
+                        alt="Large-Scale E-Commerce Customer & Product Analytics"
                         fill
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <p className="text-gray-700 dark:text-gray-300">
-                      Built an end-to-end analytics pipeline on e-commerce orders to profile customers, rank products, and surface revenue drivers. Combined SQL and Python EDA with RFM segmentation, cohort retention, and market-basket analysis, then packaged findings in a dashboard for merchandising and marketing decisions.
+                      End-to-end behavioral analytics pipeline on anonymized e-commerce events (~22M customer identities, 200M page visits, 2.3M purchases): event ingestion → multi-layer transformation → customer segmentation → Lakeview dashboard delivery.
                     </p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">RFM</Badge>
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Cohort Analysis</Badge>
-                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">SQL</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">PySpark</Badge>
                       <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Databricks</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Delta Lake</Badge>
+                      <Badge variant="outline" className="bg-purple-100/50 dark:bg-purple-900/50 hover:bg-purple-200 transition-colors duration-300">Lakeview Dashboards</Badge>
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -484,6 +525,42 @@ export default function Home() {
                       className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
                     >
                       Deep Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Transformers
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Multi-Task Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Contrastive Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Representation Learning
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Neural Network Stacking
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="justify-center py-2 text-center hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      Feature Engineering
                     </Badge>
                     <Badge
                       variant="secondary"

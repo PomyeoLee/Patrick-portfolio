@@ -21,7 +21,7 @@ export default function EcommerceMethodologyPage() {
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 leading-tight">Dataset, Methods &amp; Results</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-5">
-            Supporting detail for E-Commerce Customer &amp; Product Analytics
+            Supporting detail for Large-Scale E-Commerce Customer &amp; Product Analytics
           </p>
           <div className="flex flex-wrap gap-2">
             {["Dataset", "Methodology", "Technical Details", "Results"].map((tag) => (

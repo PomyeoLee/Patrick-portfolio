@@ -20,7 +20,9 @@
 
 
 ## Key Expertise
-- Machine Learning & Deep Learning Model Development
+- Machine Learning, Deep Learning & Transformers
+- Multi-Task Learning, Contrastive Learning & Representation Learning
+- Neural Network Stacking & Feature Engineering
 - LLM Integration, Prompt Engineering & API Orchestration
 - RAG Pipelines & Vector Database Integration
 - Model Deployment, Containerization & CI/CD Pipelines
