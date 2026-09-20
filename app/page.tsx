@@ -211,14 +211,14 @@ export default function Home() {
               <Link href="/project-detail-ecommerce-representation" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
-                    <CardTitle>E-Commerce Behavioral Representation Learning</CardTitle>
+                    <CardTitle>Customer Behavioral Representation Learning</CardTitle>
                     <CardDescription>Multi-Task &amp; Contrastive Transformers for Churn and Propensity</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-[#f4f0fa] dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
                       <Image
                         src="/images/pipeline_animation.gif"
-                        alt="E-Commerce Behavioral Representation Learning pipeline"
+                        alt="Customer Behavioral Representation Learning pipeline"
                         fill
                         className="object-contain p-2"
                       />
@@ -252,14 +252,14 @@ export default function Home() {
               <Link href="/project-detail-ecommerce" className="block w-full">
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                   <CardHeader>
-                    <CardTitle>Large-Scale E-Commerce Customer &amp; Product Analytics</CardTitle>
+                    <CardTitle>Large-Scale Customer &amp; Product Analytics</CardTitle>
                     <CardDescription>Behavioral Segmentation, Funnel &amp; Search Analytics on Databricks</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video relative rounded-md overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 transform transition-transform duration-500 hover:scale-[1.02]">
                       <Image
                         src="/images/e_commerical.gif"
-                        alt="Large-Scale E-Commerce Customer & Product Analytics"
+                        alt="Large-Scale Customer & Product Analytics"
                         fill
                         className="object-cover"
                       />

@@ -21,7 +21,7 @@ export default function EcommerceAnalyticsProjectPage() {
       <div className="container mx-auto max-w-5xl px-4 py-12">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 leading-tight">
-            Large-Scale E-Commerce Customer &amp; Product Analytics
+            Large-Scale Customer &amp; Product Analytics
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-5">
             Event ingestion → multi-layer transformation → segmentation → dashboard delivery

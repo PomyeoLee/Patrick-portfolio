@@ -20,7 +20,7 @@ export default function EcommerceRepresentationProjectPage() {
       <div className="container mx-auto max-w-5xl px-4 py-12">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 leading-tight">
-            E-Commerce Behavioral Representation Learning
+            Customer Behavioral Representation Learning
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-5">
             Multi-task &amp; contrastive Transformers for churn and purchase propensity
