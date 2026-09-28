@@ -16,6 +16,39 @@ type EmbedConfig = {
   displayName?: string | null
 }
 
+const WARMUP_TIMEOUT_MS = 5 * 60 * 1000
+const WARMUP_RETRY_DELAY_MS = 3000
+
+let warehouseWarmup: Promise<void> | null = null
+
+function ensureWarehouseAwake(): Promise<void> {
+  if (!warehouseWarmup) {
+    warehouseWarmup = (async () => {
+      const deadline = Date.now() + WARMUP_TIMEOUT_MS
+      while (Date.now() < deadline) {
+        try {
+          const res = await fetch("/api/databricks/warmup", { cache: "no-store" })
+          const data = (await res.json()) as { ready?: boolean; error?: string }
+          if (data.ready) return
+          if (data.error) {
+            console.warn("[databricks] warehouse warm-up:", data.error)
+            return
+          }
+        } catch (e) {
+          console.warn("[databricks] warehouse warm-up request failed:", e)
+          return
+        }
+        await new Promise((resolve) => setTimeout(resolve, WARMUP_RETRY_DELAY_MS))
+      }
+    })().finally(() => {
+      setTimeout(() => {
+        warehouseWarmup = null
+      }, 60_000)
+    })
+  }
+  return warehouseWarmup
+}
+
 type DatabricksDashboardEmbedProps = {
   dashboardId?: string
   title?: string
@@ -39,7 +72,7 @@ export function DatabricksDashboardEmbed({
   const dashboardRef = useRef<DatabricksDashboard | null>(null)
   const { resolvedTheme } = useTheme()
   const [isVisible, setIsVisible] = useState(!lazyUntilVisible)
-  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading")
+  const [status, setStatus] = useState<"warming" | "loading" | "ready" | "error">("loading")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [heading, setHeading] = useState(title ?? "")
 
@@ -114,10 +147,14 @@ export function DatabricksDashboardEmbed({
     async function run() {
       if (!containerRef.current) return
 
-      setStatus("loading")
+      setStatus("warming")
       setErrorMessage(null)
 
       try {
+        await ensureWarehouseAwake()
+        if (cancelled || !containerRef.current) return
+        setStatus("loading")
+
         const config = await fetchFreshEnoughConfig(300)
         if (cancelled || !containerRef.current) return
 
@@ -172,7 +209,7 @@ export function DatabricksDashboardEmbed({
     }
   }, [isVisible, fetchFreshEnoughConfig, resolvedTheme, dashboardId, title])
 
-  const showLoading = !isVisible || status === "loading"
+  const showLoading = !isVisible || status === "loading" || status === "warming"
 
   const content = (
     <>
@@ -200,7 +237,11 @@ export function DatabricksDashboardEmbed({
           <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-50/90 dark:bg-gray-900/90">
             <div className="flex flex-col items-center gap-3">
               <div className="h-9 w-9 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm text-gray-600 dark:text-gray-400">Loading dashboard…</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {status === "warming"
+                  ? "Waking up the data warehouse… this can take a minute."
+                  : "Loading dashboard…"}
+              </p>
             </div>
           </div>
         )}

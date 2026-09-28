@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server"
+import {
+  fetchServicePrincipalToken,
+  getServicePrincipalConfig,
+  normalizeWorkspaceUrl,
+} from "@/lib/databricks-auth"
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0
-
-function normalizeWorkspaceUrl(url: string) {
-  return url.replace(/\/$/, "")
-}
 
 function decodeJwtExpSeconds(accessToken: string): number | undefined {
   // JWT: header.payload.signature (base64url)
@@ -32,52 +33,15 @@ function decodeJwtExpSeconds(accessToken: string): number | undefined {
 async function mintScopedEmbedToken(
   dashboardId: string
 ): Promise<{ access_token: string; expires_in?: number; displayName?: string }> {
-  const workspaceUrlRaw = process.env.DATABRICKS_WORKSPACE_URL
-  const workspaceId = process.env.DATABRICKS_WORKSPACE_ID
-  const clientId = process.env.DATABRICKS_CLIENT_ID
-  const clientSecret = process.env.DATABRICKS_CLIENT_SECRET
   const externalViewerId = process.env.DATABRICKS_EXTERNAL_VIEWER_ID ?? "portfolio-public-viewer"
   const externalValue = process.env.DATABRICKS_EXTERNAL_VALUE ?? ""
 
-  if (!workspaceUrlRaw) {
-    throw new Error("Set DATABRICKS_WORKSPACE_URL in .env.local.")
-  }
-  if (!workspaceId) {
-    throw new Error("Set DATABRICKS_WORKSPACE_ID in .env.local.")
-  }
   if (!dashboardId) {
     throw new Error("Missing dashboard ID.")
   }
-  if (!clientId || !clientSecret) {
-    throw new Error(
-      "Set DATABRICKS_CLIENT_ID and DATABRICKS_CLIENT_SECRET (OAuth secret for your embedding service principal)."
-    )
-  }
 
-  const workspaceUrl = normalizeWorkspaceUrl(workspaceUrlRaw)
-  const basicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64")
-
-  const oidcBody = new URLSearchParams({
-    grant_type: "client_credentials",
-    scope: "all-apis",
-  })
-
-  const oidcRes = await fetch(`${workspaceUrl}/oidc/v1/token?o=${encodeURIComponent(workspaceId)}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${basicAuth}`,
-    },
-    body: oidcBody,
-  })
-
-  if (!oidcRes.ok) {
-    const text = await oidcRes.text()
-    throw new Error(`Databricks OIDC token failed (${oidcRes.status}): ${text}`)
-  }
-
-  const oidcJson = (await oidcRes.json()) as { access_token: string }
-  const oidcToken = oidcJson.access_token
+  const { workspaceUrl, workspaceId, basicAuth } = getServicePrincipalConfig()
+  const oidcToken = await fetchServicePrincipalToken()
   const displayName = await fetchDashboardDisplayName(workspaceUrl, workspaceId, dashboardId, oidcToken)
 
   const tokenInfoUrl = new URL(
