@@ -51,6 +51,8 @@ export default function EcommerceAnalyticsProjectPage() {
           </p>
         </section>
 
+        <EcommerceDatabricksDashboards />
+
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <Layers className="w-5 h-5 text-purple-600" />
@@ -124,8 +126,6 @@ export default function EcommerceAnalyticsProjectPage() {
             </li>
           </ul>
         </section>
-
-        <EcommerceDatabricksDashboards />
 
         <section className="mb-10 bg-white dark:bg-gray-800 rounded-xl shadow p-7">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

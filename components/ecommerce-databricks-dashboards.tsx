@@ -1,8 +1,8 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DatabricksDashboardEmbed } from "@/components/databricks-dashboard-embed"
+import { ChevronLeft, ChevronRight, LayoutDashboard } from "lucide-react"
+import { EcommerceNativeDashboard } from "@/components/dashboards/ecommerce-native-dashboards"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 
@@ -211,7 +211,7 @@ function NarrativeBlock({
 
 export function EcommerceDatabricksDashboards() {
   const [activeTab, setActiveTab] = useState(ECOMMERCE_DASHBOARDS[0].id)
-  // Mount each dashboard iframe only on first open; keep visited ones cached.
+  // Mount each dashboard only on first open; keep visited ones cached.
   const [visitedTabs, setVisitedTabs] = useState<ReadonlySet<string>>(
     () => new Set([ECOMMERCE_DASHBOARDS[0].id])
   )
@@ -245,7 +245,7 @@ export function EcommerceDatabricksDashboards() {
       className="relative mb-10 scroll-mt-0 rounded-xl bg-white p-7 shadow dark:bg-gray-800"
     >
       <Tabs value={activeTab} onValueChange={selectTab} className="w-full">
-        <h2 className="mb-3 text-2xl font-bold">Interactive Lakeview Dashboards</h2>
+        <h2 className="mb-3 text-2xl font-bold">Interactive Dashboards</h2>
 
         {/* Floating tab bar — sticks to the top of the page while scrolling */}
         <div className="sticky top-0 z-30 -mx-7 mb-6 border-b border-gray-200 bg-white/95 px-7 py-3 shadow-sm backdrop-blur dark:border-gray-700 dark:bg-gray-800/95">
@@ -292,16 +292,15 @@ export function EcommerceDatabricksDashboards() {
               forceMount
               className="mt-0 focus-visible:ring-0 data-[state=inactive]:hidden"
             >
-              <DatabricksDashboardEmbed
-                unframed
-                dashboardId={dashboard.dashboardId}
-                title={dashboard.title}
-                description={dashboard.question}
-              >
-                <NarrativeBlock heading="Key Findings" bullets={dashboard.findings} />
-                <NarrativeBlock heading="Business Implications" paragraphs={dashboard.implications} />
-                <NarrativeBlock heading="Recommended Actions" bullets={dashboard.actions} />
-              </DatabricksDashboardEmbed>
+              <h2 className="mb-2 flex items-center gap-2 text-lg font-semibold">
+                <LayoutDashboard className="h-4 w-4 shrink-0 text-purple-600" />
+                {dashboard.title.replace(/^Dashboard\s*\d+\s*[—–-]\s*/i, "")}
+              </h2>
+              <p className="mb-5 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{dashboard.question}</p>
+              <EcommerceNativeDashboard dashboardId={dashboard.dashboardId} />
+              <NarrativeBlock heading="Key Findings" bullets={dashboard.findings} />
+              <NarrativeBlock heading="Business Implications" paragraphs={dashboard.implications} />
+              <NarrativeBlock heading="Recommended Actions" bullets={dashboard.actions} />
             </TabsContent>
           )
         })}
